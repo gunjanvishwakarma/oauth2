@@ -1,0 +1,72 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+    platform: h2
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.H2Dialect
+          format_sql: true
+      show-sql: true
+
+zenoauth2:
+  client_credentials_grant:
+    clientId: zenworks1
+    clientSecret: $2a$11$Q2WOT0NnzLSVFsXAM5vQQu0MFvfTCbHImrPl4rMjRMa5ti1.dFnky
+    scope: "READ,WRITE,MODIFY"
+    authorities: "ROLE_ADMIN,ROLE_USER"
+  password_grant:
+    clientId: zenworks2
+    clientSecret: $2a$11$Q2WOT0NnzLSVFsXAM5vQQu0MFvfTCbHImrPl4rMjRMa5ti1.dFnky
+    scope: "READ,WRITE,MODIFY"
+    accessTokenValiditySeconds: 300
+    refreshTokenValiditySeconds: 1800
+  authorization_code_grant:
+    clientId: zenworks3
+    clientSecret: $2a$11$Q2WOT0NnzLSVFsXAM5vQQu0MFvfTCbHImrPl4rMjRMa5ti1.dFnky
+    scope: "READ,WRITE,MODIFY"
+    redirectUris: "http://localhost:6060/bundle,http://localhost:6060/inventory"
+  implicit_grant:
+    clientId: zenworks4
+    clientSecret: $2a$11$Q2WOT0NnzLSVFsXAM5vQQu0MFvfTCbHImrPl4rMjRMa5ti1.dFnky
+    scope: "READ,WRITE,MODIFY"
+  keystore:
+    name: myapp.jks
+    pass: myapp@uthk3y5tor3
+  key:
+    name: myappkey
+    pass: myapp@uthk3y
+  ldap:
+    url: "ldap://zmcedirectory.epm.blr.novell.com:389/"
+    user-search-base: "o=novell"
+    user-dn-patterns: "cn={0}, o=novell"
+    group-search-base:
+    group-search-filter:
+
+security:
+  oauth2:
+    client:
+      preEstablishedRedirectUri: http://localhost:8080/hello
+      useCurrentUri: false
+
+logging:
+  level:
+    org.springframework.cloud: 'DEBUG'
+    org.springframework.security: DEBUG
+
