@@ -38,6 +38,6 @@ public class UserDAO implements UserDetailsService {
     public static void main(String[] args)
     {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        System.out.println(bCryptPasswordEncoder.encode("novell"));
+        System.out.println(bCryptPasswordEncoder.encode("zenworks"));
     }
 } 
